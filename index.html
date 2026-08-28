@@ -169,12 +169,6 @@
       color: var(--text);
     }
 
-    .add-section {
-      margin-top: 1rem;
-      padding-top: 1rem;
-      border-top: 1px solid var(--border);
-    }
-
     .add-grid {
       display: grid;
       grid-template-columns: 2fr 1fr 1fr;
@@ -262,6 +256,9 @@
       { text: "If my number were the time, would most people be sleeping right now?", level: "B1-B2", category: "time" },
       { text: "If my number were a birthday, how many candles are on my cake?", level: "A1-A2", category: "time" },
       { text: "If my number were human years, am I a toddler, a teenager, or a senior citizen?", level: "B1-B2", category: "time" },
+      { text: "If my number were my age, am I old enough to drive a car?", level: "A1-A2", category: "time" },
+      { text: "If my number were my age, would I be allowed to vote in a national election?", level: "B1-B2", category: "time" },
+      { text: "If my number were my age, am I eligible for a senior citizen discount at the movies?", level: "B1-B2", category: "time" },
 
       // Creative & Hypothetical
       { text: "If I had this number of pets, would my apartment be overcrowded?", level: "A1-A2", category: "creative" },
@@ -271,6 +268,11 @@
       { text: "If this number were my monthly salary in dollars, would I be rich or poor?", level: "B1-B2", category: "creative" },
       { text: "If I had to stay silent for this number of days, would it test my sanity?", level: "C1", category: "creative" },
       { text: "If this were the speed limit of a car, would I be moving at a crawl or supersonic speeds?", level: "C1", category: "creative" },
+      { text: "If I had to fight this number of ducks at the same time, could I win?", level: "A1-A2", category: "creative" },
+      { text: "If I ate this number of spicy chili peppers, would I need to call an ambulance?", level: "B1-B2", category: "creative" },
+      { text: "If I slept for this number of hours straight, would my friends think I was in a coma?", level: "B1-B2", category: "creative" },
+      { text: "If my number were the length of a movie in minutes, would my legs fall asleep in the theater?", level: "A1-A2", category: "creative" },
+      { text: "If I drank this number of cups of coffee in one morning, would my heart be racing?", level: "B1-B2", category: "creative" },
 
       // Daily Life & Real World
       { text: "Is my number higher than the total number of fingers on both of my hands?", level: "A1-A2", category: "daily" },
@@ -278,13 +280,19 @@
       { text: "Is my number greater than the number of days in a week?", level: "A1-A2", category: "daily" },
       { text: "Could I easily carry this number of books in my backpack?", level: "A1-A2", category: "daily" },
       { text: "Is my number larger than the total number of students in this room?", level: "B1-B2", category: "daily" },
+      { text: "If my number were the cost of a plane ticket to Paris, is it unbelievably cheap or expensive?", level: "B1-B2", category: "daily" },
+      { text: "If my number were the height of a tree in meters, is it taller than a two-story house?", level: "B1-B2", category: "daily" },
+      { text: "If I walked this number of steps every day, would my fitness app consider me active or lazy?", level: "A1-A2", category: "daily" },
+      { text: "If my number were the capacity of an elevator, could my whole class fit inside at once?", level: "B1-B2", category: "daily" },
+      { text: "If my number were the number of notifications on my phone, would I feel popular or overwhelmed?", level: "B1-B2", category: "daily" },
 
       // Math & Properties
       { text: "Is my number an even number or an odd number?", level: "A1-A2", category: "math" },
       { text: "Is my number a single digit, double digit, or triple digit number?", level: "A1-A2", category: "math" },
       { text: "Is my number divisible by 5 without leaving a remainder?", level: "B1-B2", category: "math" },
       { text: "Is my number a prime number?", level: "C1", category: "math" },
-      { text: "If you square my number, does it exceed 100?", level: "C1", category: "math" }
+      { text: "If you square my number, does it exceed 100?", level: "C1", category: "math" },
+      { text: "If you halve my number, do you end up with a whole number or a fraction?", level: "C1", category: "math" }
     ];
 
     function generateQuestion() {
