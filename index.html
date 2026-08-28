@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Forehead Number Game - Question Generator</title>
+  <style>
+    :root {
+      --primary: #4f46e5;
+      --primary-hover: #4338ca;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #0f172a;
+      --muted: #64748b;
+      --border: #e2e8f0;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      display: flex;
+      justify-content: center;
+      padding: 2rem 1rem;
+      min-height: 100vh;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 650px;
+    }
+
+    header {
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 1.75rem;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+
+    header p {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      margin-bottom: 1.5rem;
+    }
+
+    .controls {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+    }
+
+    @media (max-width: 480px) {
+      .controls {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    select, input[type="text"] {
+      width: 100%;
+      padding: 0.6rem 0.8rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background-color: #fff;
+      font-size: 0.95rem;
+      color: var(--text);
+      outline: none;
+    }
+
+    select:focus, input[type="text"]:focus {
+      border-color: var(--primary);
+    }
+
+    .btn {
+      width: 100%;
+      padding: 0.8rem;
+      border: none;
+      border-radius: 8px;
+      background-color: var(--primary);
+      color: white;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .btn:hover {
+      background-color: var(--primary-hover);
+    }
+
+    .output-box {
+      min-height: 120px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 1rem;
+      background-color: #f1f5f9;
+      border-radius: 8px;
+      border: 1px dashed var(--border);
+      position: relative;
+    }
+
+    .question-text {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.4;
+      margin-bottom: 0.5rem;
+    }
+
+    .question-tag {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--primary);
+      background-color: #e0e7ff;
+      padding: 0.25rem 0.6rem;
+      border-radius: 12px;
+      text-transform: uppercase;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 0.75rem;
+    }
+
+    .btn-secondary {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      cursor: pointer;
+    }
+
+    .btn-secondary:hover {
+      background-color: #f1f5f9;
+      color: var(--text);
+    }
+
+    .add-section {
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .add-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    @media (max-width: 480px) {
+      .add-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>Forehead Number Game</h1>
+      <p>Generate creative questions to guess the number on your head!</p>
+    </header>
+
+    <div class="card">
+      <div class="controls">
+        <div>
+          <label for="level">Difficulty (CEFR)</label>
+          <select id="level">
+            <option value="all">All Levels</option>
+            <option value="A1-A2">Beginner (A1 - A2)</option>
+            <option value="B1-B2" selected>Intermediate (B1 - B2)</option>
+            <option value="C1">Advanced (C1)</option>
+          </select>
+        </div>
+        <div>
+          <label for="category">Category</label>
+          <select id="category">
+            <option value="all">All Categories</option>
+            <option value="creative">Creative & Hypothetical</option>
+            <option value="math">Math & Properties</option>
+            <option value="daily">Daily Life & Real World</option>
+            <option value="time">Age & Time</option>
+          </select>
+        </div>
+      </div>
+
+      <button class="btn" onclick="generateQuestion()">Generate Question</button>
+
+      <div style="margin-top: 1.25rem;">
+        <div class="output-box" id="output">
+          <p class="question-text">Click the button above to start!</p>
+        </div>
+        <div class="actions">
+          <button class="btn-secondary" onclick="copyQuestion()">📋 Copy Question</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add Custom Question Section -->
+    <div class="card">
+      <h3 style="font-size: 1rem; margin-bottom: 0.75rem;">Add Your Own Question</h3>
+      <div class="add-grid">
+        <input type="text" id="customText" placeholder="e.g. Is my number larger than 50?" />
+        <select id="customLevel">
+          <option value="A1-A2">A1-A2</option>
+          <option value="B1-B2">B1-B2</option>
+          <option value="C1">C1</option>
+        </select>
+        <select id="customCategory">
+          <option value="creative">Creative</option>
+          <option value="math">Math</option>
+          <option value="daily">Daily Life</option>
+          <option value="time">Time & Age</option>
+        </select>
+      </div>
+      <button class="btn-secondary" style="width: 100%;" onclick="addCustomQuestion()">Add to Generator</button>
+    </div>
+  </div>
+
+  <script>
+    let questions = [
+      // Age & Time
+      { text: "If my number were my age, am I old enough to drink alcohol legally?", level: "B1-B2", category: "time" },
+      { text: "If my number were my age, am I still in elementary school?", level: "A1-A2", category: "time" },
+      { text: "If my number were my age, would I be retired?", level: "B1-B2", category: "time" },
+      { text: "If my number were the time, would most people be sleeping right now?", level: "B1-B2", category: "time" },
+      { text: "If my number were a birthday, how many candles are on my cake?", level: "A1-A2", category: "time" },
+      { text: "If my number were human years, am I a toddler, a teenager, or a senior citizen?", level: "B1-B2", category: "time" },
+
+      // Creative & Hypothetical
+      { text: "If I had this number of pets, would my apartment be overcrowded?", level: "A1-A2", category: "creative" },
+      { text: "If I ate this many slices of pizza, would I end up in the hospital?", level: "B1-B2", category: "creative" },
+      { text: "If my number were a temperature in Celsius, would water freeze, boil, or be comfortable?", level: "B1-B2", category: "creative" },
+      { text: "If I ran this many kilometers right now, would I survive?", level: "A1-A2", category: "creative" },
+      { text: "If this number were my monthly salary in dollars, would I be rich or poor?", level: "B1-B2", category: "creative" },
+      { text: "If I had to stay silent for this number of days, would it test my sanity?", level: "C1", category: "creative" },
+      { text: "If this were the speed limit of a car, would I be moving at a crawl or supersonic speeds?", level: "C1", category: "creative" },
+
+      // Daily Life & Real World
+      { text: "Is my number higher than the total number of fingers on both of my hands?", level: "A1-A2", category: "daily" },
+      { text: "If this were the price of a cup of coffee, is it cheap or expensive?", level: "A1-A2", category: "daily" },
+      { text: "Is my number greater than the number of days in a week?", level: "A1-A2", category: "daily" },
+      { text: "Could I easily carry this number of books in my backpack?", level: "A1-A2", category: "daily" },
+      { text: "Is my number larger than the total number of students in this room?", level: "B1-B2", category: "daily" },
+
+      // Math & Properties
+      { text: "Is my number an even number or an odd number?", level: "A1-A2", category: "math" },
+      { text: "Is my number a single digit, double digit, or triple digit number?", level: "A1-A2", category: "math" },
+      { text: "Is my number divisible by 5 without leaving a remainder?", level: "B1-B2", category: "math" },
+      { text: "Is my number a prime number?", level: "C1", category: "math" },
+      { text: "If you square my number, does it exceed 100?", level: "C1", category: "math" }
+    ];
+
+    function generateQuestion() {
+      const selectedLevel = document.getElementById('level').value;
+      const selectedCategory = document.getElementById('category').value;
+
+      const filtered = questions.filter(q => {
+        const matchesLevel = selectedLevel === 'all' || q.level === selectedLevel;
+        const matchesCat = selectedCategory === 'all' || q.category === selectedCategory;
+        return matchesLevel && matchesCat;
+      });
+
+      const outputEl = document.getElementById('output');
+
+      if (filtered.length === 0) {
+        outputEl.innerHTML = `<p class="question-text" style="color: var(--muted);">No questions match your filter. Try picking 'All'.</p>`;
+        return;
+      }
+
+      const randomIndex = Math.floor(Math.random() * filtered.length);
+      const randomQ = filtered[randomIndex];
+
+      outputEl.innerHTML = `
+        <p class="question-text">"${randomQ.text}"</p>
+        <div>
+          <span class="question-tag">${randomQ.level}</span>
+          <span class="question-tag" style="background:#fef3c7; color:#d97706;">${randomQ.category}</span>
+        </div>
+      `;
+    }
+
+    function copyQuestion() {
+      const qText = document.querySelector('.question-text');
+      if (qText && qText.innerText !== "Click the button above to start!") {
+        navigator.clipboard.writeText(qText.innerText);
+        alert("Copied question to clipboard!");
+      }
+    }
+
+    function addCustomQuestion() {
+      const textInput = document.getElementById('customText');
+      const text = textInput.value.trim();
+      const level = document.getElementById('customLevel').value;
+      const category = document.getElementById('customCategory').value;
+
+      if (!text) {
+        alert("Please enter a question prompt!");
+        return;
+      }
+
+      questions.push({ text, level, category });
+      textInput.value = '';
+      alert("Custom question added successfully!");
+    }
+  </script>
+</body>
+</html>
